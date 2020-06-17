@@ -22,9 +22,19 @@ With the help of the MQTT server you can integrate the monitoring data to virtua
 - Have several OneWire temperature sensors<br>So you can see the temperature of e.g. the MPPT Solracharger or the batteries or your inverter, ...
 - Timing parameters can be changed via MQTT<br>E.g. you can set that VE.Direct blocks are only transmitted every 10 seconds. The last received block will be transmitted, all other blocks are lost
 - OTA (Over The Air Update)<br>If you have a webserver where you can put binary files on and run php scripts you can use that server to install new VE.Direct2MQTT software<br>Please make sure that you use SSL and User/Password
+- One config file to enable/disable features and configure serial port or MQTT Topics
 
 
 ## Limitations
-- VE.Direct2MQTT is only listening to messages of the VE.Direct device<br>It understands only the "ASCII" part of the protocol that is only good to receive a set of values. YOu can't request any special data or change any parameters of the VE.Direct device.<br>This is intentionally because this is monitoring only
+- VE.Direct2MQTT is only listening to messages of the VE.Direct device<br>It understands only the "ASCII" part of the protocol that is only good to receive a set of values. You can't request any special data or change any parameters of the VE.Direct device.<br>This is intentionally because this is monitoring only
 - If you transmit a block only every 10 seconds, 9 previous blocks will be lost, because VE.Direct devices publish every second<br>This is normally not a problem.
-- During sending OneWire Data or OTA check no VE.Direct blocks will be sent.<br>This is a limitation of the ESP32, having sveral tasks tranmitting in parallel caused crashes of the device
+- During sending OneWire Data or OTA check no VE.Direct blocks will be sent.<br>This is a limitation of the ESP32, having several tasks tranmitting in parallel caused crashes of the device
+
+## Hardware Installation
+
+## Software configuration
+
+## Debugging
+
+## Disclaimer
+I WILL NOT BE HELD LIABLE FOR ANY DAMAGE THAT YOU DO TO YOU OR ONE OF YOUR DEVICES.
