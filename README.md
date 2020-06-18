@@ -31,13 +31,13 @@ With the help of the MQTT server you can integrate the monitoring data to virtua
 - During sending OneWire Data or OTA check no VE.Direct blocks will be sent.<br>This is a limitation of the ESP32, having several tasks tranmitting in parallel caused crashes of the device
 
 ## Hardware Installation
-![Please see the wiki](https://github.com/RalfJL/VE.Direct2MQTT/wiki)
+![Please see the wiki](https://github.com/RalfJL/VE.Direct2MQTT/wiki/Hardware)
 
 ## Software configuration
-![Please see the wiki](https://github.com/RalfJL/VE.Direct2MQTT/wiki)
+![Please see the wiki](https://github.com/RalfJL/VE.Direct2MQTT/wiki/Software)
 
 ## Debugging
-![Please see the wiki](https://github.com/RalfJL/VE.Direct2MQTT/wiki)
+![Please see the wiki](https://github.com/RalfJL/VE.Direct2MQTT/wiki/Debugging)
 
 ## Disclaimer
 I WILL NOT BE HELD LIABLE FOR ANY DAMAGE THAT YOU DO TO YOU OR ONE OF YOUR DEVICES.
