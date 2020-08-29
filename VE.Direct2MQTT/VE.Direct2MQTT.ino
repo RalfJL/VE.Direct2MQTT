@@ -72,7 +72,9 @@ void setup() {
   OW_WAIT_TIME = pref.getInt("OW_WAIT_TIME", OW_WAIT_TIME);
 #endif
   if ( startWiFi()) {
-    setClock();
+    #ifdef USE_OTA
+     setClock();
+    #endif
     last_boot = time(nullptr);
     if ( startMQTT()) {
       ve.begin();
