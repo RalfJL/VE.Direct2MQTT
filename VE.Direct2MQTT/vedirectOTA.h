@@ -80,23 +80,7 @@ boolean splitURL(String * result, String url) {
   return true;
 }
 
-// Set time via NTP, as required for x.509 validation
-void setClock() {
-  configTime(0, 0, "pool.ntp.org", "time.nist.gov");  // UTC
 
-  log_d("Waiting for NTP time sync: ");
-  time_t now = time(nullptr);
-  while (now < 8 * 3600 * 2) {
-    yield();
-    delay(500);
-    now = time(nullptr);
-  }
-
-  log_d("");
-  struct tm timeinfo;
-  gmtime_r(&now, &timeinfo);
-  log_d("NTP time %s", asctime(&timeinfo));
-}
 
 //
 // make sure that there is plenty of memory, otherwise SSL will fail
