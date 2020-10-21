@@ -88,6 +88,15 @@ boolean startWiFi() {
   return false;
 }
 
+// check if WiFi is still connected 
+// if not, try to reconnect
+boolean checkWiFi(){
+  if ( WiFi.status() != WL_CONNECTED ){
+    return startWiFi();
+  }
+  return true;
+}
+
 boolean endWiFi() {
   log_d("Stopping WiFi ... ");
   boolean r = WiFi.disconnect();

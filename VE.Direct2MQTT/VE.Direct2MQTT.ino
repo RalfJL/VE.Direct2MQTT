@@ -91,23 +91,29 @@ void loop() {
   time_t t = time(nullptr);
 #ifdef USE_ONEWIRE
   if ( abs(t - last_ow) >= OW_WAIT_TIME) {
-    sendOneWireMQTT();
-    last_ow = t;
-    sendOPInfo();
+    if ( checkWiFi()) {
+      sendOneWireMQTT();
+      last_ow = t;
+      sendOPInfo();
+    }
   }
 #endif
 #ifdef USE_OTA
   if ( abs(t - last_ota) >= OTA_WAIT_TIME) {
-    startOTA(SKETCH_NAME);
-    last_ota = t;
+    if ( checkWiFi()) {
+      startOTA(SKETCH_NAME);
+      last_ota = t;
+    }
   }
 #endif
   if ( abs( t - last_vedirect) >= VE_WAIT_TIME) {
     if ( ve.getNewestBlock(&block)) {
       last_vedirect = t;
       log_i("New block arrived; Value count: %d, serial %d", block.kvCount, block.serial);
-      sendASCII2MQTT(&block);
-      sendOPInfo();
+      if ( checkWiFi()) {
+        sendASCII2MQTT(&block);
+        sendOPInfo();
+      }
     }
   }
 }
