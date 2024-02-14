@@ -84,7 +84,7 @@ void callback(const char* topic, byte * payload, unsigned int length) {
     }
 #endif
 
-    JsonVariant sleeptime = obj.getMember("VE_WAIT_TIME");
+    JsonVariant sleeptime = obj["VE_WAIT_TIME"];
     if ( sleeptime ) {
       mqtt_param_rec = true; // this will cause the parameter to be erased from queue
       int st = sleeptime.as<int>();
@@ -97,7 +97,7 @@ void callback(const char* topic, byte * payload, unsigned int length) {
     }
 
 #ifdef USE_OTA
-    JsonVariant ota_sleeptime = obj.getMember("OTA_WAIT_TIME");
+    JsonVariant ota_sleeptime = obj["OTA_WAIT_TIME"];
     if ( ota_sleeptime ) {
       mqtt_param_rec = true; // this will cause the parameter to be erased from queue
       int st = ota_sleeptime.as<int>();
@@ -110,7 +110,7 @@ void callback(const char* topic, byte * payload, unsigned int length) {
     }
 #endif
 #ifdef USE_ONEWIRE
-    JsonVariant ow_sleeptime = obj.getMember("OW_WAIT_TIME");
+    JsonVariant ow_sleeptime = obj["OW_WAIT_TIME"];
     if ( ow_sleeptime ) {
       mqtt_param_rec = true; // this will cause the parameter to be erased from queue
       int st = ow_sleeptime.as<int>();
@@ -145,6 +145,7 @@ boolean startMQTT() {
   }
   return false; // no server available
 }
+
 
 //
 // end MQTT
