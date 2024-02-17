@@ -82,7 +82,7 @@ void setup() {
   }
   // oh oh, we did not get WiFi or MQTT, that is bad; we can't continue
   // wait a while and reboot to try again
-  delay(5000);
+  delay(20000);
   ESP.restart();
 }
 
@@ -112,8 +112,12 @@ void loop() {
       log_i("New block arrived; Value count: %d, serial %d", block.kvCount, block.serial);
       if ( checkWiFi()) {
         sendASCII2MQTT(&block);
-        sendOPInfo();
+        // sendOPInfo();
       }
     }
+  }
+  if ( ! espMQTT.loop()){
+    log_i("MQTT connection lost restart");
+    startMQTT();
   }
 }

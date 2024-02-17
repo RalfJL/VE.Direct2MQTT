@@ -46,6 +46,7 @@ boolean reconnect(const char* server, uint16_t port, const char* id, const char*
     // Attempt to connect
     if (espMQTT.connect(id, user, pw)) {
       log_i("connected");
+      log_i("Subscribing to: %s", MQTT_PARAMETER.c_str());
       espMQTT.subscribe(MQTT_PARAMETER.c_str(), 1);
       return true;
     } else {
@@ -146,7 +147,6 @@ boolean startMQTT() {
   return false; // no server available
 }
 
-
 //
 // end MQTT
 //
@@ -183,6 +183,7 @@ boolean sendASCII2MQTT(VEDirectBlock_t * block) {
       espMQTT.publish(MQTT_PARAMETER.c_str(), "", true);
     }
   }
+  return true;
 }
 
 //
@@ -199,6 +200,7 @@ boolean sendOPInfo() {
   } else {
     log_e("Sending MQTT message failed: %s: %s", topic.c_str(), asctime(localtime(&last_boot)));
   }
+  return true;
 }
 
 

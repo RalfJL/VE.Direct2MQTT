@@ -50,6 +50,7 @@ String addr2String(DeviceAddress addr) {
 }
 
 boolean meassureOneWire() {
+  log_d("Start");
   int m_count = MAX_MEASSUREMENTS;
   do {
     m_count --;
@@ -60,6 +61,7 @@ boolean meassureOneWire() {
     sensors.requestTemperatures();
     delay(1000);
     deviceCount = sensors.getDeviceCount();
+    log_d("Found %d devices", deviceCount);
     for (int i = 0; i < deviceCount; i++) {
       float temp = sensors.getTempCByIndex(i);
       if ( temp > 200 || temp < -80 ) {
@@ -67,15 +69,19 @@ boolean meassureOneWire() {
       }
     }
   } while (m_count >= 0 && !onewire_good_values);
+  log_d("End");
+  return true;
 }
 
 boolean sendOneWireMQTT() {
+  log_d("Start");
   meassureOneWire();
 
   log_d("Found %d One wire temp sensors", deviceCount);
   float c[deviceCount];
 
   if ( !onewire_good_values || deviceCount <= 0) {
+    log_d("No ONE Wire temp sensors found; END");
     return false;
   }
 
@@ -113,6 +119,7 @@ boolean sendOneWireMQTT() {
     log_i("Removing parameter from Queue: %s", MQTT_PARAMETER.c_str());
     espMQTT.publish(MQTT_PARAMETER.c_str(), "", true);
   }
+  log_d("End");
   return true;
 }
 
